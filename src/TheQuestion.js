@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 const TheQuestion = () => {
   const navigate = useNavigate();
-  const [skiingButtonPosition, setSkiingButtonPosition] = useState({ left: 300, top: 30 });
   const [isMouseOverButton, setIsMouseOverButton] = useState(false);
 
+  const skiingButtonPosition = { left: 300, top: 30 };
   const [snowboardingButtonPosition, setSnowboardingButtonPosition] = useState({
     left: skiingButtonPosition.left + 100,
     top: skiingButtonPosition.top,
@@ -26,14 +26,14 @@ const TheQuestion = () => {
       const mouseX = e.clientX;
       const mouseY = e.clientY;
 
-      const button = document.getElementById('noButton');
-      const buttonRect = button.getBoundingClientRect();
+      const snowButton = document.getElementById('snowButton');
+      const snowButtonRect = snowButton.getBoundingClientRect();
 
       const isMouseOver = (
-        mouseX >= buttonRect.left &&
-        mouseX <= buttonRect.right &&
-        mouseY >= buttonRect.top &&
-        mouseY <= buttonRect.bottom
+        mouseX >= snowButtonRect.left &&
+        mouseX <= snowButtonRect.right &&
+        mouseY >= snowButtonRect.top &&
+        mouseY <= snowButtonRect.bottom
       );
 
       setIsMouseOverButton(isMouseOver);
@@ -56,7 +56,7 @@ const TheQuestion = () => {
       <div className="buttons">
         <button
           className="btn"
-          id="yesButton"
+          id="skiButton"
           onClick={handleSkiingButtonClick}
           style={{ position: 'absolute', left: skiingButtonPosition.left, top: skiingButtonPosition.top }}
         >
@@ -64,7 +64,7 @@ const TheQuestion = () => {
         </button>
         <button
           className={`btn ${isMouseOverButton ? 'moving' : ''}`}
-          id="noButton"
+          id="snowButton"
           style={{ position: 'absolute', left: snowboardingButtonPosition.left, top: snowboardingButtonPosition.top }}
           onClick={moveButton}
         >
