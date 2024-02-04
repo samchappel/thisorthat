@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import TheQuestion from './TheQuestion';
+import SkiingPage from './SkiingPage';
 
-function App() {
+const App = () => {
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleButtonClick = (option) => {
+    setSelectedOption(option);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<TheQuestion handleButtonClick={handleButtonClick} />} />
+        <Route
+          path="/skiing"
+          element={
+            selectedOption === 'skiing' ? (
+              <Navigate to="/skiing" replace />
+            ) : (
+              <SkiingPage />
+            )
+          }
+        />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
