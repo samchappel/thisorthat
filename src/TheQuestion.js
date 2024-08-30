@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const TheQuestion = () => {
+const TheQuestion = ({ onSnowboardingButtonMove }) => {
   const navigate = useNavigate();
   const [isMouseOverButton, setIsMouseOverButton] = useState(false);
 
@@ -15,6 +15,8 @@ const TheQuestion = () => {
     const x = Math.random() * (window.innerWidth - 85);
     const y = Math.random() * (window.innerHeight - 48);
     setSnowboardingButtonPosition({ left: x, top: y });
+
+    onSnowboardingButtonMove();
   };
 
   const handleSkiingButtonClick = () => {
