@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import TheQuestion from './TheQuestion';
 import SkiingPage from './SkiingPage';
 
 const App = () => {
-  const handleButtonClick = (option, navigate) => {
-    option === 'skiing' && navigate('/skiing', { replace: true });
+  const [didSnowboardingButtonMove, setDidSnowboardingButtonMove] = useState(false);
+
+  const handleSnowboardingButtonMove = () => {
+    setDidSnowboardingButtonMove(true);
   };
 
   return (
@@ -13,11 +15,11 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<TheQuestion handleButtonClick={handleButtonClick} />}
+          element={<TheQuestion onSnowboardingButtonMove={handleSnowboardingButtonMove} />}
         />
         <Route
           path="/skiing"
-          element={<SkiingPage />}
+          element={<SkiingPage didSnowboardingButtonMove={didSnowboardingButtonMove} />}
         />
       </Routes>
     </Router>
