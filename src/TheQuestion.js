@@ -50,7 +50,7 @@ const TheQuestion = ({ onSnowboardingButtonMove }) => {
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [moveButton]);
 
   return (
     <div className="container">
