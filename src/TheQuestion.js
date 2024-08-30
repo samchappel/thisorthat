@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const TheQuestion = ({ onSnowboardingButtonMove }) => {
@@ -11,13 +11,13 @@ const TheQuestion = ({ onSnowboardingButtonMove }) => {
     top: skiingButtonPosition.top,
   });
 
-  const moveButton = () => {
+  const moveButton = useCallback(() => {
     const x = Math.random() * (window.innerWidth - 85);
     const y = Math.random() * (window.innerHeight - 48);
     setSnowboardingButtonPosition({ left: x, top: y });
 
     onSnowboardingButtonMove();
-  };
+  }, [onSnowboardingButtonMove]);
 
   const handleSkiingButtonClick = () => {
     navigate('/skiing');
@@ -29,19 +29,21 @@ const TheQuestion = ({ onSnowboardingButtonMove }) => {
       const mouseY = e.clientY;
 
       const snowButton = document.getElementById('snowButton');
-      const snowButtonRect = snowButton.getBoundingClientRect();
+      if (snowButton) {
+        const snowButtonRect = snowButton.getBoundingClientRect();
 
-      const isMouseOver = (
-        mouseX >= snowButtonRect.left &&
-        mouseX <= snowButtonRect.right &&
-        mouseY >= snowButtonRect.top &&
-        mouseY <= snowButtonRect.bottom
-      );
+        const isMouseOver = (
+          mouseX >= snowButtonRect.left &&
+          mouseX <= snowButtonRect.right &&
+          mouseY >= snowButtonRect.top &&
+          mouseY <= snowButtonRect.bottom
+        );
 
-      setIsMouseOverButton(isMouseOver);
+        setIsMouseOverButton(isMouseOver);
 
-      if (isMouseOver) {
-        moveButton();
+        if (isMouseOver) {
+          moveButton();
+        }
       }
     };
 
