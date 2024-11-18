@@ -12,9 +12,9 @@ const TheQuestion = ({ onSnowboardingButtonMove }) => {
   });
 
   const moveButton = useCallback(() => {
-    const x = Math.random() * 80;
-    const y = Math.random() * 80;
-    setSnowboardingButtonPosition({ left: `${x}vw`, top: `${y}vh` });;
+    const x = Math.random() * 90;
+    const y = Math.random() * 90;
+    setSnowboardingButtonPosition({ left: `${x}%`, top: `${y}%` });
 
     onSnowboardingButtonMove();
   }, [onSnowboardingButtonMove]);
@@ -55,9 +55,9 @@ const TheQuestion = ({ onSnowboardingButtonMove }) => {
   }, [moveButton]);
 
   return (
-    <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', width: '100%', overflow: 'hidden' }}>
+    <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
       <h1 className="header_text">Which is better?</h1>
-      <div className="buttons" style={{ position: 'relative', width: '100%', height: '300px', maxWidth: '600px', overflow: 'hidden' }}>
+      <div className="buttons" style={{ position: 'relative', width: '100%', height: '300px', maxWidth: '600px' }}>
         <button
           className="btn"
           id="skiButton"
